@@ -1,0 +1,97 @@
+{
+  "schema_version": "0.1.0",
+  "id": "hypertension-follow-up-patient-checkin",
+  "version": "0.1.0",
+  "title": "Hypertension follow-up check-in",
+  "description": "Synthetic demonstration collection. Not a validated clinical questionnaire.",
+  "target_elements": [
+    {
+      "system": "https://example-emr.invalid/elements",
+      "id": "home_blood_pressure"
+    },
+    {
+      "system": "https://example-emr.invalid/elements",
+      "id": "medication_adherence"
+    },
+    {
+      "system": "https://example-emr.invalid/elements",
+      "id": "symptoms"
+    }
+  ],
+  "supported_modes": [
+    "web_form",
+    "clinician_ui",
+    "chat"
+  ],
+  "review_required": true,
+  "questions": [
+    {
+      "id": "bp_systolic",
+      "prompt": "What was the systolic (top number) reading?",
+      "response_type": "integer",
+      "required": true,
+      "target_element_ref": {
+        "system": "https://example-emr.invalid/elements",
+        "id": "home_blood_pressure"
+      }
+    },
+    {
+      "id": "bp_diastolic",
+      "prompt": "What was the diastolic (bottom number) reading?",
+      "response_type": "integer",
+      "required": true,
+      "target_element_ref": {
+        "system": "https://example-emr.invalid/elements",
+        "id": "home_blood_pressure"
+      }
+    },
+    {
+      "id": "bp_measured_at",
+      "prompt": "When was this reading taken?",
+      "response_type": "datetime",
+      "required": true,
+      "target_element_ref": {
+        "system": "https://example-emr.invalid/elements",
+        "id": "home_blood_pressure"
+      }
+    },
+    {
+      "id": "adherence",
+      "prompt": "How have you been taking your prescribed medicines?",
+      "response_type": "choice",
+      "required": true,
+      "options": [
+        {
+          "value": "as_prescribed",
+          "label": "As prescribed"
+        },
+        {
+          "value": "missed_some",
+          "label": "I missed some doses"
+        },
+        {
+          "value": "not_taking",
+          "label": "I am not taking them"
+        },
+        {
+          "value": "unsure",
+          "label": "I am not sure"
+        }
+      ],
+      "target_element_ref": {
+        "system": "https://example-emr.invalid/elements",
+        "id": "medication_adherence"
+      }
+    },
+    {
+      "id": "symptoms",
+      "prompt": "Would you like to report any new or worsening symptoms?",
+      "response_type": "text",
+      "required": false,
+      "target_element_ref": {
+        "system": "https://example-emr.invalid/elements",
+        "id": "symptoms"
+      }
+    }
+  ]
+}

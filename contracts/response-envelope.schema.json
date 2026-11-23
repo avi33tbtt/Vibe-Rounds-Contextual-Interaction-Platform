@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://viberounds.example/schemas/response-envelope.schema.json",
+  "title": "Collection Response Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "response_id",
+    "task_id",
+    "respondent",
+    "collection_method",
+    "recorded_at",
+    "answers"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "response_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "respondent": {
+      "type": "object",
+      "required": [
+        "actor_type",
+        "actor_ref"
+      ],
+      "properties": {
+        "actor_type": {
+          "enum": [
+            "patient",
+            "caregiver",
+            "practitioner",
+            "staff",
+            "device",
+            "ai_agent"
+          ]
+        },
+        "actor_ref": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "collection_method": {
+      "enum": [
+        "patient_web",
+        "clinician_ui",
+        "chat",
+        "voice",
+        "device",
+        "api",
+        "ai_assisted"
+      ]
+    },
+    "effective_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "specification_ref": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "answers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "question_id",
+          "value"
+        ],
+        "properties": {
+          "question_id": {
+            "type": "string"
+          },
+          "value": {},
+          "unit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "original_text": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "source_system": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "channel_reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "correlation_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transformation_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

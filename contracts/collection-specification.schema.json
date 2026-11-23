@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://viberounds.example/schemas/collection-specification.schema.json",
+  "title": "Collection Specification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "version",
+    "title",
+    "target_elements",
+    "questions"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "target_elements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "system",
+          "id"
+        ],
+        "properties": {
+          "system": {
+            "type": "string",
+            "format": "uri"
+          },
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "supported_modes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "web_form",
+          "clinician_ui",
+          "chat",
+          "voice",
+          "api"
+        ]
+      }
+    },
+    "review_required": {
+      "type": "boolean",
+      "default": true
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "prompt",
+          "response_type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "help_text": {
+            "type": "string"
+          },
+          "response_type": {
+            "enum": [
+              "text",
+              "boolean",
+              "integer",
+              "decimal",
+              "date",
+              "datetime",
+              "quantity",
+              "choice",
+              "multi_choice"
+            ]
+          },
+          "required": {
+            "type": "boolean",
+            "default": false
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "value",
+                "label"
+              ],
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "target_element_ref": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "system": {
+                "type": "string",
+                "format": "uri"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

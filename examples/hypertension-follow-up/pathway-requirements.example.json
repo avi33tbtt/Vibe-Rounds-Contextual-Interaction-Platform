@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "source_system": "https://example-emr.invalid",
+  "patient_ref": {
+    "system": "https://example-emr.invalid/patients",
+    "id": "SYNTH-PATIENT-001"
+  },
+  "encounter_ref": {
+    "system": "https://example-emr.invalid/encounters",
+    "id": "SYNTH-ENC-001"
+  },
+  "pathway_ref": {
+    "system": "https://example-emr.invalid/pathways",
+    "id": "hypertension-follow-up",
+    "version": "1.0"
+  },
+  "requirements": [
+    {
+      "element_ref": {
+        "system": "https://example-emr.invalid/elements",
+        "id": "home_blood_pressure"
+      },
+      "required": true,
+      "freshness_days": 7,
+      "reason": "Follow-up context"
+    },
+    {
+      "element_ref": {
+        "system": "https://example-emr.invalid/elements",
+        "id": "medication_adherence"
+      },
+      "required": true,
+      "freshness_days": 30,
+      "reason": "Follow-up context"
+    },
+    {
+      "element_ref": {
+        "system": "https://example-emr.invalid/elements",
+        "id": "symptoms"
+      },
+      "required": true,
+      "freshness_days": 7,
+      "reason": "Follow-up context"
+    }
+  ],
+  "context_status": [
+    {
+      "element_id": "home_blood_pressure",
+      "status": "stale",
+      "last_effective_at": "2026-10-01T08:00:00Z"
+    },
+    {
+      "element_id": "medication_adherence",
+      "status": "missing"
+    },
+    {
+      "element_id": "symptoms",
+      "status": "missing"
+    }
+  ]
+}
